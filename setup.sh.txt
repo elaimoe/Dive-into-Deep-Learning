@@ -1,34 +1,25 @@
 #!/bin/bash
+# 适用于Cloud Studio高性能工作空间免费版Pytorch模板
 
-# 创建 d2l 环境
-conda create --name d2l python=3.9 -y || exit 1
+read -p "Are you sure you want to run this setup script? (yes/no): " confirm
+if [ "$confirm" != "yes" ]; then
+    echo "Setup aborted."
+    exit 1
+fi
 
-# 激活 d2l 环境
-conda activate d2l || exit 1
+#conda update --all
+
+# 安装 jupyter matplotlib
+conda install jupyter matplotlib
 
 # 安装 PyTorch 和 torchvision
-pip install torch==2.0.0 torchvision==0.15.1 || exit 1
-
-# 创建 d2l-en 目录并进入目录
-mkdir d2l-en && cd d2l-en || exit 1
+conda install -y pytorch torchvision pytorch-cuda=11.7 -c pytorch -c nvidia
 
 # 下载并解压 d2l-en.zip
-curl https://r2.elaina.cn/d2l-en-1.0.3.zip -o d2l-en.zip || exit 1
+curl https://data.elaina.cn/d2l-en-1.0.3.zip -o d2l-en.zip || exit 1
 unzip d2l-en.zip && rm d2l-en.zip || exit 1
 
-# 激活 d2l 环境
-conda activate d2l || exit 1
-
-# 安装 Jupyter
-conda install jupyter -y || exit 1
-
-# 安装 matplotlib
-conda install matplotlib -y || exit 1
-
-# 安装 Jupyter 内核
-python -m ipykernel install --user --name d2l --display-name "Python (d2l)" || exit 1
-
 # 安装 d2l 库
-pip install d2l==1.0.3 || exit 1
+pip install d2l==1.0.3
 
 echo "All commands executed successfully."
