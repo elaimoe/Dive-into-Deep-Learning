@@ -1,5 +1,6 @@
 #!/bin/bash
-# 适用于Cloud Studio高性能工作空间免费版Pytorch模板
+# 适用于腾讯云 Cloud Studio 高性能工作空间 Pytorch模板
+# https://ide.cloud.tencent.com/dashboard/gpu-workspace
 
 read -p "Are you sure you want to run this setup script? (yes/no): " confirm
 if [ "$confirm" != "yes" ]; then
